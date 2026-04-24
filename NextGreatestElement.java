@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class NextGreatestElement {
     public static void main(String[]args){
@@ -6,23 +7,19 @@ public class NextGreatestElement {
         int a[]=new int[n];
         for(int i=0;i<n;i++)
         a[i]=s.nextInt();
+        int result[]=new int[n];
+        Arrays.fill(result,-1);
         for(int i=0;i<n;i++){
-            int max=-1;
-            for(int j=i+1;j<n;j++){
-                if(a[i]<a[j]){
-                max=a[j];
+          for(int j=1;j<n;j++){
+            int index=(i+j)%n;
+            if(a[index]>a[i]){
+                result[i]=a[index];
                 break;
-                }
             }
-            if (max == -1) {
-                for (int j = 0; j < i; j++) {
-                    if (a[j] > a[i]) {
-                        max = a[j];
-                        break;
-                    }
-                }
-            }
-            System.out.print(max+" ");
-        }
+          }       
     }
+    for(int i=0;i<n;i++)
+    System.out.print(result[i]);
+    s.close();
+}
 }
